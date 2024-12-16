@@ -27,6 +27,20 @@ Data source :
 
 Execution step : 
 
-Summary of result :
+# Summary of result :
+
+- Displays the first few rows, column names, missing values, and descriptive statistics.
+   Cleans column names by removing extra spaces.
+- Cholesterol Analysis:
+   Fills missing values in the Cholesterol column with the mean.
+   Shows summary statistics before and after filling missing values.
+- Heart Disease Analysis:
+   Groups patients by HeartDisease (0 = No, 1 = Yes).
+   Calculates averages for features like Cholesterol, Age, and BloodPressure.
+- Visualizations:
+   Average Cholesterol vs. Heart Disease: Bar plot to compare cholesterol levels.
+   Average Age vs. Heart Disease: Bar plot to analyze age differences.
+   Average Blood Pressure vs. Heart Disease: Bar plot for blood pressure trends.
+   Average Cholesterol by Age Group: Bar plot to observe cholesterol across age brackets.
 
 Challenges faced : 
