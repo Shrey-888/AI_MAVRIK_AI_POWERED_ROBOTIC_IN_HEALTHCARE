@@ -1,1 +1,112 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+# Load the dataset
+data = pd.read_csv('healthcare_data.csv')
+
+# Display the first few rows of the dataset
+print("First few rows of the dataset:")
+print(data.head())
+
+# Check the column names
+print("\nColumn names:", data.columns)
+
+# Strip any leading or trailing spaces from column names
+data.columns = data.columns.str.strip()
+
+# Check for missing values
+print("\nMissing values in each column:")
+print(data.isnull().sum())
+
+# Display full descriptive statistics for the entire dataset
+print("\nDescriptive statistics for the entire dataset:")
+print(data.describe(include='all'))  # include='all' to get stats for all columns, including non-numeric
+
+# Check if 'Cholesterol' and 'HeartDisease' columns exist
+if 'Cholesterol' in data.columns:
+    # Print summary statistics before filling missing values
+    print("\nSummary statistics for 'Cholesterol' before filling missing values:")
+    print(data['Cholesterol'].describe())
+    
+    # Fill missing values (if any) with the mean
+    data['Cholesterol'].fillna(data['Cholesterol'].mean(), inplace=True)
+    
+    # Print summary statistics after filling missing values
+    print("\nSummary statistics for 'Cholesterol' after filling missing values:")
+    print(data['Cholesterol'].describe())
+else:
+    print("Column 'Cholesterol' does not exist in the DataFrame.")
+
+if 'HeartDisease' in data.columns:
+    # Data Analysis
+    # Group by Heart Disease and calculate the mean of other features
+    grouped_data = data.groupby('HeartDisease').mean()
+
+    # Display the grouped data with a clear explanation
+    print("\nAverage cholesterol levels grouped by heart disease presence:")
+    print(grouped_data[['Cholesterol']])
+
+    # Data Visualization
+    plt.style.use('ggplot')  # Change to a valid style
+    plt.figure(figsize=(15, 10))
+
+    # Create a bar plot for average cholesterol levels
+    plt.subplot(2, 2, 1)  # 2 rows, 2 columns, 1st subplot
+    bars = plt.bar(grouped_data.index, grouped_data['Cholesterol'], color=['#1f77b4', '#ff7f0e'], alpha=0.8)
+    plt.title('Average Cholesterol Levels by Heart Disease Presence', fontsize=16, fontweight='bold')
+    plt.xlabel('Heart Disease (0 = No, 1 = Yes)', fontsize=14)
+    plt.ylabel('Average Cholesterol Level', fontsize=14)
+
+    # Add value annotations on top of the bars
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width()/2, yval + 5, round(yval, 2), ha='center', va='bottom', fontsize=12)
+
+    # Create additional bar plots for other features
+    # Example: Average Age by Heart Disease Presence
+    if 'Age' in data.columns:
+        plt.subplot(2, 2, 2)  # 2nd subplot
+        age_grouped = data.groupby('HeartDisease')['Age'].mean()
+        bars = plt.bar(age_grouped.index, age_grouped, color=['#1f77b4', '#ff7f0e'], alpha=0.8)
+        plt.title('Average Age by Heart Disease Presence', fontsize=16, fontweight='bold')
+        plt.xlabel('Heart Disease (0 = No, 1 = Yes)', fontsize=14)
+        plt.ylabel('Average Age', fontsize=14)
+
+        for bar in bars:
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width()/2, yval + 1, round(yval, 2), ha='center', va='bottom', fontsize=12)
+
+    # Example: Average Blood Pressure by Heart Disease Presence
+    if 'BloodPressure' in data.columns:
+        plt.subplot(2, 2, 3)  # 3rd subplot
+        bp_grouped = data.groupby('HeartDisease')['BloodPressure'].mean()
+        bars = plt.bar(bp_grouped.index, bp_grouped, color=['#1f77b4', '#ff7f0e'], alpha=0.8)
+        plt.title('Average Blood Pressure by Heart Disease Presence', fontsize=16, fontweight='bold')
+        plt.xlabel('Heart Disease (0 = No, 1 = Yes)', fontsize=14)
+        plt.ylabel('Average Blood Pressure', fontsize=14)
+
+        for bar in bars:
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width()/2, yval + 1, round(yval, 2), ha='center', va='bottom', fontsize=12)
+
+    # Example: Average Cholesterol by Age Group
+    if 'Age' in data.columns and 'Cholesterol' in data.columns:
+        plt.subplot(2, 2, 4)  # 4th subplot
+        age_bins = [20, 30, 40, 50, 60, 70, 80]
+        data['AgeGroup'] = pd.cut(data['Age'], bins=age_bins)
+        cholesterol_by_age = data.groupby('AgeGroup')['Cholesterol'].mean()
+        bars = plt.bar(cholesterol_by_age.index.astype(str), cholesterol_by_age, color=['#1f77b4'], alpha=0.8)
+        plt.title('Average Cholesterol Levels by Age Group', fontsize=16, fontweight='bold')
+        plt.xlabel('Age Group', fontsize=14)
+        plt.ylabel('Average Cholesterol Level', fontsize=14)
+
+        for bar in bars:
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width()/2, yval + 5, round(yval, 2), ha='center', va='bottom', fontsize=12)
+
+    # Adjust layout to make room for the title and labels
+    plt.tight_layout()
+    plt.show()
+else:
+    print("Column 'HeartDisease' does not exist in the DataFrame.")
