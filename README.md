@@ -83,11 +83,24 @@ Using Python and libraries like NumPy, Pandas, and Matplotlib to:
     - plt.subplot(2, 2, 1)
     - bars = plt.bar(grouped_data.index, grouped_data['Cholesterol'], color=['#1f77b4', '#ff7f0e'], alpha=0.8)
 
-# Tools and Libraries : Panda, NumPy, Matplot.lib
+# Tools and Libraries 
 
-Data source : 
+    - **Python:** The primary programming language used for developing the project.
 
-Execution step : 
+    - **Pandas:** A powerful data manipulation and analysis library for Python. It provides data structures like DataFrames, which are ideal for handling structured data, making 
+      it easy to read, write, and manipulate datasets.
+
+    - **Matplotlib:** A plotting library for Python that provides a flexible way to create static, animated, and interactive visualizations in Python. It is used in this project 
+      to visualize income and expenses.
+
+    - **CSV:** A module in Python's standard library used for reading and writing CSV (Comma-Separated Values) files. It is used in this project to store and retrieve budget 
+      data.
+
+    - **Git:** A version control system used to track changes in the project files. It allows for collaboration among team members and maintains a history of changes.
+
+    - **GitHub:** A web-based platform for version control and collaboration. It hosts the project repository, allowing team members to share code and track issues.
+
+
 
 # Summary of result :
 
