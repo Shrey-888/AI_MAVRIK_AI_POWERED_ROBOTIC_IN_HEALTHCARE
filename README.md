@@ -4,7 +4,10 @@
 
 
 # Group Members 
-Patel Shrey, Patel Parth, Patel Manush, Aman Chordia
+  - Patel Shrey
+  - Patel Parth
+  -  Patel Manus
+  -   Aman Chordia
 
 # Objective 
 
