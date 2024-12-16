@@ -6,7 +6,7 @@
 # Group Members 
   - Patel Shrey
   - Patel Parth
-  -  Patel Manus
+  -  Patel Manush
   -   Aman Chordia
 
 # Objective 
