@@ -117,5 +117,3 @@ Using Python and libraries like NumPy, Pandas, and Matplotlib to:
    Average Age vs. Heart Disease: Bar plot to analyze age differences.
    Average Blood Pressure vs. Heart Disease: Bar plot for blood pressure trends.
    Average Cholesterol by Age Group: Bar plot to observe cholesterol across age brackets.
-
-Challenges faced : 
