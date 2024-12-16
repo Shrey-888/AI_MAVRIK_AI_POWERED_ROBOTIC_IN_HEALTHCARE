@@ -21,6 +21,68 @@ Using Python and libraries like NumPy, Pandas, and Matplotlib to:
 
 4. Visualize the findings through clear and insightful graphs.
 
+## Execution step  
+
+ 1) **Importing Libraries**
+    
+    - import pandas as pd
+    - import numpy as np
+    - import matplotlib.pyplot as plt
+
+ 2) **Loading the Dataset**
+
+    - data = pd.read_csv('healthcare_data.csv')     
+
+3) **Displaying the First Few Rows**
+    - print("First few rows of the dataset:")
+    - print(data.head())
+  
+4) **Checking Column Names**
+
+    - print("\nColumn names:", data.columns)
+  
+5) **Stripping Leading or Trailing Spaces from Column Names**
+
+   - data.columns = data.columns.str.strip()
+
+6) **Checking for Missing Values**
+
+   - print("\nMissing values in each column:")
+   - print(data.isnull().sum())
+
+7) **Displaying Descriptive Statistics**
+
+   - print("\nDescriptive statistics for the entire dataset:")
+   - print(data.describe(include='all'))
+
+8) **Handling Missing Values in the 'Cholesterol' Column**
+
+   - if 'Cholesterol' in data.columns:
+   - print("\nSummary statistics for 'Cholesterol' before filling missing values:")
+   - print(data['Cholesterol'].describe())
+
+   - data['Cholesterol'].fillna(data['Cholesterol'].mean(), inplace=True)
+
+   - print("\nSummary statistics for 'Cholesterol' after filling missing values:")
+   - print(data['Cholesterol'].describe())
+
+9) **Grouping Data by 'HeartDisease'**
+
+    - if 'HeartDisease' in data.columns:
+    - grouped_data = data.groupby('HeartDisease').mean()
+    - print("\nAverage cholesterol levels grouped by heart disease presence:")
+    - print(grouped_data[['Cholesterol']])
+
+10) **Data Visualization**
+
+    - plt.style.use('ggplot')
+    - plt.figure(figsize=(15, 10))
+
+11) **Creating Bar Plots**
+
+    - plt.subplot(2, 2, 1)
+    - bars = plt.bar(grouped_data.index, grouped_data['Cholesterol'], color=['#1f77b4', '#ff7f0e'], alpha=0.8)
+
 # Tools and Libraries : Panda, NumPy, Matplot.lib
 
 Data source : 
